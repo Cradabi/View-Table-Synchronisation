@@ -82,36 +82,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     //connecttodb
     this->setMinimumSize(350, 300);
-//    QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
-//    db.setHostName("localhost");
-//    db.setDatabaseName("postgres");
-//    db.setUserName("postgres");
-//    db.setPassword("MaximRozov24");
-//    if (!db.open()) {
-//        qDebug() << "Не удалось подключиться к базе данных.";
-//        exit(0);
-//    }
-//     //Создаем модель данных для таблицы
-//    model = new QSqlTableModel;
-//    model->setTable("syncho_table");
-//    model->setEditStrategy(QSqlTableModel::OnRowChange);
-//    model->select();
 
     // Создаем виджет QTableView и устанавливаем модель данных
     tableView = new QTableView;
     tableView->setEditTriggers(QAbstractItemView::AllEditTriggers);
     tableView->verticalHeader()->setVisible(false);
     //tableView->setModel(model);
-
-//    QObject::connect(model, &QSqlTableModel::dataChanged, [&](const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles) {
-//            if (model->submitAll()) {
-//                qDebug() << "Changes submitted successfully";
-//            } else {
-//                qDebug() << "Failed to submit changes";
-//            }
-//        });
-
-//    // Соединяем сигнал нажатия кнопки с обновлением данных в модел
 
     model = new MyTableModel(this);
 
