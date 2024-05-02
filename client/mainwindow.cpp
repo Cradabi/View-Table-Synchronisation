@@ -82,6 +82,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     //connecttodb
     this->setMinimumSize(350, 300);
+    this->setWindowTitle("View Table Client");
 
     // Создаем виджет QTableView и устанавливаем модель данных
     tableView = new QTableView;
@@ -218,8 +219,16 @@ void MainWindow::onsaveButtonClicked(){
 
 void MainWindow::onaddButtonClicked(){
     qDebug() << "addButton clicked";
+    model->modelData.append({"", "", ""});
+    slotSendToServer();
 }
 
 void MainWindow::ondeleteButtonClicked(){
     qDebug() << "deleteButton clicked";
+    if (!model->modelData.isEmpty()) {
+        // Удаляем последний элемент из data
+        model->modelData.removeLast();
+        slotSendToServer();
+    }
+
 }

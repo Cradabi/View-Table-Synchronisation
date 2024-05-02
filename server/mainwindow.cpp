@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("View Table Server");
     this->setMinimumSize(350, 300);
     QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
     db.setHostName("localhost");
@@ -36,12 +37,12 @@ MainWindow::MainWindow(QWidget *parent)
             }
         });
 
-//    // Соединяем сигнал нажатия кнопки с обновлением данных в модел
+    // Соединяем сигнал нажатия кнопки с обновлением данных в модел
 
     label = new QLabel("Сервер", this);
     addButton = new QPushButton("+", this);
     deleteButton = new QPushButton("-", this);
-    saveButton = new QPushButton("Сохранить", this);
+    saveButton = new QPushButton("Сохранить", this);    
     connect(saveButton, &QPushButton::clicked, this, &MainWindow::onsaveButtonClicked);
     connect(addButton, &QPushButton::clicked, this, &MainWindow::onaddButtonClicked);
     connect(deleteButton, &QPushButton::clicked, this, &MainWindow::ondeleteButtonClicked);
@@ -158,24 +159,7 @@ void MainWindow::slotReadClient()
 
 void MainWindow::onsaveButtonClicked(){
     qDebug() << "saveButton clicked";
-//    model->setData(model->index(1, 0), 4);
-//    model->setData(model->index(1, 1), "Jeans");
-//    model->setData(model->index(1, 2), 600);
     sendToClient();
-//    QVector<QVector<QString>> vect = {{"1", "Jeens", "150"}, {"2", "Cap", "15"}, {"3", "Boots", "200"}};
-//    int rcount = model->rowCount();
-//    for(int i = 0; i < rcount; i++){
-//        model->removeRow(rcount - 1 - i);
-//        model->select();
-//    }
-
-//    for(int i = 0; i < vect.size(); i++){
-//        model->insertRow(i);
-//        model->setData(model->index(i, 0), vect[i][0].toInt());
-//        model->setData(model->index(i, 1), vect[i][1]);
-//        model->setData(model->index(i, 2), vect[i][2].toInt());
-
-//    }
 }
 
 void MainWindow::onaddButtonClicked(){
